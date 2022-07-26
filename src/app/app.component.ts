@@ -28,17 +28,18 @@ export class AppComponent {
     })
   }
 
-  private autoCompleteHundler(res: string) {
-    if (res?.length) {
-      let position = 0
-      let temp = []
+  private autoCompleteHundler(inputText: string) {
+    if (inputText?.length) {
+      let position = 0;
       for (let i = 0; i < this.names.length; i++) {
         let name = this.names[i];
-        if (name?.toLowerCase().startsWith(res?.toLowerCase())) {
-          position = (res.split(' ').length)
-          temp = name.split(' ')
-          this.suggestion =  temp.splice(0,position).join(' ')
+        //? check if the text 
+        if (name?.toLowerCase().startsWith(inputText?.toLowerCase())) {
+          position = inputText.split(' ').length;
+          this.suggestion =  name.split(' ').splice(0,position).join(' ');
           break
+        }else{
+          this.suggestion = ""
         }
       }
     } else {
